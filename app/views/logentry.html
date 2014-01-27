@@ -1,0 +1,41 @@
+<div class="logentry">
+  <form role="form">
+    <div class="row entry-row">
+      <input type="date" class="input-lg col-xs-12" id="date" ng-model="run.date"
+      ng-init=" run.date = today ">
+    </div>
+
+    <div class="row entry-row">
+      <select class="input-lg col-xs-4" ng-model="run.hours"
+        ng-init="run.hours = 0"
+        ng-options="option for option in range(0, 25)">
+      </select>
+
+      <select class="input-lg col-xs-4" ng-model="run.minutes"
+      ng-init="run.minutes = 0"
+      ng-options="option for option in range(0, 61)">
+      </select>
+
+      <select class="input-lg col-xs-4" ng-model="run.seconds"
+      ng-init="run.seconds = 0"
+      ng-options="option for option in range(0, 61)">
+      </select>
+    </div>
+
+    <div class="row entry-row">
+      <input class="input-lg col-xs-6" type="number" ng-model="run.length" ng-init="run.length = 0"/>
+        <select class="input-lg col-xs-6" ng-model="run.unit"
+        ng-init="run.unit = units[0]"
+        ng-options="option for option in units">
+        </select>
+    </div>
+    <div class="row entry-row">
+      <button type="submit" class="btn btn-default input-lg col-xs-12" ng-click="submit(run)">Submit</button>
+    </div>
+  </form>
+  <br>
+  <br>
+  <pre>
+    {{ run }}
+  </pre>
+</div>

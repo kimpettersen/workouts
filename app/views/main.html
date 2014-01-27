@@ -1,0 +1,11 @@
+<ul ng-repeat="run in runs">
+  <li>
+    <span>{{ run.date }}</span>
+    <span>
+    {{ run.hours }}H {{ run.minutes }}M {{ run.seconds }}S {{ unit }}
+    </span>
+    <span>
+      <button type="submit" class="btn btn-default" ng-click="remove(run._id)">delete</button>
+    </span>
+  </li>
+</ul>
