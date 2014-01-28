@@ -12,6 +12,34 @@ MongoClient.connect('mongodb://127.0.0.1:27017/myruns', function(err, db) {
     db = db;
     Run = db.collection('run');
     User = db.collection('user');
+
+
+    db.collection('user', function(err, User) {
+
+    passport.use(new LocalStrategy(function(username, password, done) {
+        User.findOne({
+            username: username,
+            password: password
+          }, function(err, user){
+              // Validate password?
+              if (err) {
+                  return done(err);
+              }
+              return done(null, user)
+          });
+        }));
+
+        passport.serializeUser(function(user, done) {
+            done(null, user._id);
+        });
+
+        passport.deserializeUser(function(id, done) {
+            User.findOne({ '_id': new ObjectID(id) }, function(err, user) {
+                done(err, user);
+            });
+        });
+
+    });
 });
 
 app.use(express.static('./app'));
@@ -21,38 +49,18 @@ app.use(express.session({ cookie: { maxAge: 60000 }, secret: 'liQfGTGaOTvNvQXqOJ
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
 
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
-});
-
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.findOne({ username: username }, function(err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
-    });
-  }
-));
-
-
-
-app.get('/auth/google/return',
-  passport.authenticate('google', { successRedirect: '/',
-                                    failureRedirect: '/login' }));
+function authenticatedOrNot(req, res, next){
+    if(req.isAuthenticated()){
+        next();
+    }else{
+        res.redirect('/register.html');
+    }
+}
 
 app.post('/register', function(req, res) {
   User.findOne({ username: req.body.username }, function(error, user) {
-    if(error || user ) {
+    if(error) {
       res.redirect('/register.html');
     } else {
       User.insert(req.body, function(err, newUser) {
@@ -64,6 +72,15 @@ app.post('/register', function(req, res) {
 
   });
 });
+
+app.post('/login', passport.authenticate('local'), function(req, res){
+  res.json('logged in')
+});
+
+app.all('*', authenticatedOrNot, function(req, res, next) {
+  next();
+});
+
 
 app.get('/run/:id', function(req, res){
   Run.findOne({'_id': new ObjectID(req.params.id) }, function(error, result){
