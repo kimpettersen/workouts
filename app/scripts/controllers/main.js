@@ -4,8 +4,6 @@ angular.module('myrunsApp')
   .controller('MainCtrl', function ($scope, $http) {
     $scope.runs = [];
 
-
-
     $scope.populate = function() {
       $http.get('/run')
         .success(function(data){
@@ -20,7 +18,6 @@ angular.module('myrunsApp')
           $scope.populate();
         })
     }
-
     $scope.populate();
 
   });

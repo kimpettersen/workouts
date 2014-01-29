@@ -24,8 +24,6 @@ MongoClient.connect('mongodb://127.0.0.1:27017/myruns', function(err, db) {
             email: email,
             password: password
           }, function(err, user){
-              console.log('query: ', err, user);
-              // Validate password?
               if (err) {
                   return done(err);
               }
@@ -55,16 +53,15 @@ app.use(passport.session());
 
 
 function authenticatedOrNot(req, res, next){
-    console.log(req.isAuthenticated());
     if(req.isAuthenticated()){
         next();
     }else{
-        res.redirect('/login.html');
+        res.status(401);
+        res.json('Not authenticated');
     }
 }
 
 app.post('/register', function(req, res) {
-  console.log(req.body, '<--');
   User.findOne({ email: req.body.email }, function(error, user) {
 
     if(error) {
@@ -91,7 +88,6 @@ app.get('/logout', function(req, res){
 
 
 app.all('*', authenticatedOrNot, function(req, res, next) {
-  console.log('in next');
   next();
 });
 
