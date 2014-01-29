@@ -16,11 +16,15 @@ MongoClient.connect('mongodb://127.0.0.1:27017/myruns', function(err, db) {
 
     db.collection('user', function(err, User) {
 
-    passport.use(new LocalStrategy(function(username, password, done) {
+    passport.use(new LocalStrategy({
+      usernameField: 'email',
+      passwordField: 'password'
+    },function(email, password, done) {
         User.findOne({
-            username: username,
+            email: email,
             password: password
           }, function(err, user){
+              console.log('query: ', err, user);
               // Validate password?
               if (err) {
                   return done(err);
@@ -51,15 +55,18 @@ app.use(passport.session());
 
 
 function authenticatedOrNot(req, res, next){
+    console.log(req.isAuthenticated());
     if(req.isAuthenticated()){
         next();
     }else{
-        res.redirect('/register.html');
+        res.redirect('/login.html');
     }
 }
 
 app.post('/register', function(req, res) {
-  User.findOne({ username: req.body.username }, function(error, user) {
+  console.log(req.body, '<--');
+  User.findOne({ email: req.body.email }, function(error, user) {
+
     if(error) {
       res.redirect('/register.html');
     } else {
@@ -74,10 +81,17 @@ app.post('/register', function(req, res) {
 });
 
 app.post('/login', passport.authenticate('local'), function(req, res){
-  res.json('logged in')
+  res.redirect('/');
 });
 
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/login.html');
+});
+
+
 app.all('*', authenticatedOrNot, function(req, res, next) {
+  console.log('in next');
   next();
 });
 
