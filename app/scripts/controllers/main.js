@@ -4,21 +4,15 @@ angular.module('myrunsApp')
   .controller('MainCtrl', function ($scope, $http, $cookies) {
     $scope.runs = [];
 
-
-
-    // TODO: finish query by user
-
-
-
     $scope.populate = function() {
-      var user = $cookies.user;
+      var email = $cookies.email;
 
       $http.get('/run', {
         params: {
-          user: user
+          email: email
         }
-      })
-        .success(function(data){
+      }).success(function(data){
+        console.log(data);
           $scope.runs = data;
         });
     };

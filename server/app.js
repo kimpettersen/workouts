@@ -3,6 +3,7 @@ var express = require('express'),
     MongoClient = require('mongodb').MongoClient,
     ObjectID = require('mongodb').ObjectID,
     passport = require('passport'),
+    url = require('url'),
     LocalStrategy = require('passport-local').Strategy,
     db,
     User,
@@ -98,7 +99,10 @@ app.get('/run/:id', function(req, res){
 });
 
 app.get('/run/?', function(req, res){
-  Run.find().toArray(function(error, result){
+
+  var url_parts = url.parse(req.url, true);
+  var query = url_parts.query;
+  Run.find(query).toArray(function(error, result){
     res.json(result);
   });
 });
