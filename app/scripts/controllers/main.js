@@ -1,13 +1,24 @@
 'use strict';
 
 angular.module('myrunsApp')
-  .controller('MainCtrl', function ($scope, $http) {
+  .controller('MainCtrl', function ($scope, $http, $cookies) {
     $scope.runs = [];
 
+
+
+    // TODO: finish query by user
+
+
+
     $scope.populate = function() {
-      $http.get('/run')
+      var user = $cookies.user;
+
+      $http.get('/run', {
+        params: {
+          user: user
+        }
+      })
         .success(function(data){
-          console.log(data);
           $scope.runs = data;
         });
     };

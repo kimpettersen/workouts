@@ -65,25 +65,24 @@ app.post('/register', function(req, res) {
   User.findOne({ email: req.body.email }, function(error, user) {
 
     if(error) {
-      res.redirect('/register.html');
+      res.redirect('/#/register');
     } else {
       User.insert(req.body, function(err, newUser) {
         if (err) throw err;
-        res.redirect('/login.html');
+        res.redirect('/#/login');
       });
-
     }
-
   });
 });
 
 app.post('/login', passport.authenticate('local'), function(req, res){
-  res.redirect('/');
+  res.json(req.body);
 });
+
 
 app.get('/logout', function(req, res){
   req.logout();
-  res.redirect('/login.html');
+  res.redirect('/#/login');
 });
 
 
