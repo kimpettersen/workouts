@@ -9,7 +9,10 @@ var express = require('express'),
     User,
     Run;
 
-MongoClient.connect('mongodb://127.0.0.1:27017/myruns', function(err, db) {
+var mongoUri = process.env.MONGOLAB_URI || 'mongodb://127.0.0.1:27017/myruns';
+
+MongoClient.connect(mongoUri, function(err, db) {
+
     db = db;
     Run = db.collection('run');
     User = db.collection('user');
