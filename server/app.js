@@ -105,9 +105,9 @@ app.get('/logout', function(req, res){
 });
 
 
-// app.all('*', authenticatedOrNot, function(req, res, next) {
-//   next();
-// });
+app.all('*', authenticatedOrNot, function(req, res, next) {
+  next();
+});
 
 
 app.get('/run/:id', function(req, res){
