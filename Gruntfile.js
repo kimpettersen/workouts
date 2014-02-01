@@ -106,7 +106,7 @@ module.exports = function (grunt) {
           jshintrc: 'test/.jshintrc'
         },
         src: ['test/spec/{,*/}*.js']
-      }
+      },
     },
 
     // Empties folders to start fresh
@@ -380,6 +380,10 @@ module.exports = function (grunt) {
     'connect:test',
     'karma'
   ]);
+
+
+  grunt.registerTask('hint', ['newer:jshint']);
+
 
   grunt.registerTask('build', [
     'clean:dist',

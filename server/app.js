@@ -54,14 +54,14 @@ MongoClient.connect(mongoUri, function(err, db) {
     });
 });
 
-app.use(function(req, res, next) {
-  var type = mime.lookup(req.url);
-  if (req.url.indexOf('.js') !==  -1) {
-    res.type('application/javascript');
-  }
-  next();
+// app.use(function(req, res, next) {
+//   var type = mime.lookup(req.url);
+//   if (req.url.indexOf('.js') !==  -1) {
+//     res.type('application/javascript');
+//   }
+//   next();
 
-});
+// });
 
 app.use(express.static('./app'));
 app.use(express.bodyParser());
