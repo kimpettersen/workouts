@@ -6,9 +6,6 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css styles/vendor.css -->
-    <!-- bower:css -->
 
       <link href="bower_components/bootflat/bootstrap/bootstrap.min.css" rel="stylesheet" media="screen">
       <link href="bower_components/bootflat/css/font-awesome.min.css" rel="stylesheet" media="screen">
@@ -16,15 +13,10 @@
       <link href="bower_components/bootflat/css/bootflat-extensions.css" rel="stylesheet" media="screen">
       <link href="bower_components/bootflat/css/bootflat-square.css" rel="stylesheet" media="screen">
 
-
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
   </head>
   <body ng-app="myrunsApp">
-    <!-- Add your site or application content here -->
+
     <div class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right">
@@ -39,37 +31,22 @@
       </div>
     </div>
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-
-    <!--[if lt IE 9]>
-    <script src="bower_components/es5-shim/es5-shim.js"></script>
-    <script src="bower_components/json3/lib/json3.min.js"></script>
-    <![endif]-->
-
-    <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
     <script src="bower_components/jquery/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/bootflat/js/bootstrap.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="bower_components/bootflat/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-resource/angular-resource.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-cookies/angular-cookies.min.js"></script>
 
-    <!-- endbower -->
-    <!-- endbuild -->
+    <script type="text/javascript" src="bower_components/lodash/dist/lodash.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-lodash/angular-lodash.js"></script>
+    <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
 
-
-    <script src="bower_components/lodash/dist/lodash.min.js"></script>
-    <script src="bower_components/angular-lodash/angular-lodash.js"></script>
-    <script src="bower_components/moment/moment.js"></script>
-
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/logEntry.js"></script>
-        <script src="scripts/controllers/login.js"></script>
-        <script src="scripts/controllers/register.js"></script>
-        <script src="scripts/services/user.js"></script>
-        <!-- endbuild -->
+    <script type="text/javascript" src="scripts/app.js"></script>
+    <script type="text/javascript" src="scripts/controllers/main.js"></script>
+    <script type="text/javascript" src="scripts/controllers/logEntry.js"></script>
+    <script type="text/javascript" src="scripts/controllers/login.js"></script>
+    <script type="text/javascript" src="scripts/controllers/register.js"></script>
+    <script type="text/javascript" src="scripts/services/user.js"></script>
 </body>
 </html>
