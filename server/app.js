@@ -56,6 +56,9 @@ MongoClient.connect(mongoUri, function(err, db) {
 
 app.use(function(req, res, next) {
   var type = mime.lookup(req.url);
+  console.log(typeof type);
+  console.log(type);
+
   if (req.url.indexOf('.js') !==  -1 && type !== 'application/javascript') {
     res.type('application/javascript');
   }
