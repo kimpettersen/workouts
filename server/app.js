@@ -56,19 +56,14 @@ MongoClient.connect(mongoUri, function(err, db) {
 
 app.use(function(req, res, next) {
   var type = mime.lookup(req.url);
-  console.log(typeof type);
-  console.log(type);
-
-  if (req.url.indexOf('.js') !==  -1 && type !== 'application/javascript') {
+  if (req.url.indexOf('.js') !==  -1) {
     res.type('application/javascript');
   }
   next();
 
 });
 
-app.use(express.logger());
-app.use(express.static(__dirname + '/app'));
-app.use(express.methodOverride());
+app.use(express.static('./app'));
 app.use(express.bodyParser());
 app.use(express.cookieParser() );
 app.use(express.session({ cookie: { maxAge: 60000 }, secret: 'liQfGTGaOTvNvQXqOJW' }));
