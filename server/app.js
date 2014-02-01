@@ -4,6 +4,7 @@ var express = require('express'),
     ObjectID = require('mongodb').ObjectID,
     passport = require('passport'),
     url = require('url'),
+    mime = require('mime'),
     LocalStrategy = require('passport-local').Strategy,
     db,
     User,
@@ -51,6 +52,15 @@ MongoClient.connect(mongoUri, function(err, db) {
         });
 
     });
+});
+
+app.use(function(req, res, next) {
+  var type = mime.lookup(req.url);
+  if (req.url.indexOf('.js') !==  -1 && type !== 'application/javascript') {
+    res.type('application/javascript');
+  }
+  next();
+
 });
 
 app.use(express.static('./app'));
