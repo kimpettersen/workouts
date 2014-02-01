@@ -11,9 +11,9 @@ angular.module('myrunsApp', [
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
-        resolve: {
-          loggedin: checkLoggedin
-        }
+        // resolve: {
+        //   loggedin: checkLoggedin
+        // }
       })
       .when('/login', {
         templateUrl: 'views/login.html',
@@ -26,47 +26,47 @@ angular.module('myrunsApp', [
       .when('/logentry', {
         templateUrl: 'views/logEntry.html',
         controller: 'LogentryCtrl',
-        resolve: {
-          loggedin: checkLoggedin
-        }
+        // resolve: {
+        //   loggedin: checkLoggedin
+        // }
       })
       .otherwise({
         redirectTo: '/',
-        resolve: {
-          loggedin: checkLoggedin
-        }
+        // resolve: {
+        //   loggedin: checkLoggedin
+        // }
       });
 
-    $httpProvider.responseInterceptors.push(function($q, $location) {
-      return function(promise) {
-        return promise.then(
-          function(response){
-            return response;
-          },
-          function(response) {
-            if (response.status === 401)
-              $location.url('/login');
-              return $q.reject(response);
-          }
-        );
-      }
-    });
+    // $httpProvider.responseInterceptors.push(function($q, $location) {
+    //   return function(promise) {
+    //     return promise.then(
+    //       function(response){
+    //         return response;
+    //       },
+    //       function(response) {
+    //         if (response.status === 401)
+    //           $location.url('/login');
+    //           return $q.reject(response);
+    //       }
+    //     );
+    //   }
+    // });
 
-    function checkLoggedin($q, $timeout, $http, $location, $rootScope) {
-      var deferred = $q.defer();
+    // function checkLoggedin($q, $timeout, $http, $location, $rootScope) {
+    //   var deferred = $q.defer();
 
-      $http.get('/loggedin').success(function(user){
-        if (user !== '0'){
-          $timeout(deferred.resolve, 0);
-        } else {
-          $rootScope.message = 'You need to log in.';
-          $timeout(function(){
-            deferred.reject();
-          }, 0);
-        $location.url('/login');
-      }
-    });
-  }
+    //   $http.get('/loggedin').success(function(user){
+    //     if (user !== '0'){
+    //       $timeout(deferred.resolve, 0);
+    //     } else {
+    //       $rootScope.message = 'You need to log in.';
+    //       $timeout(function(){
+    //         deferred.reject();
+    //       }, 0);
+    //     $location.url('/login');
+    //   }
+    // });
+  // }
 });
 
 
