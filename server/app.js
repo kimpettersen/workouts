@@ -77,7 +77,7 @@ app.use(express.session({
         db: 'workouts'
       }, function () {
         console.log("db connection open");
-      }))
+      })
     }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -116,6 +116,9 @@ app.get('/logout', function(req, res){
   res.redirect('/#/login');
 });
 
+app.all('/loggedin', authenticatedOrNot, function(req, res, next) {
+  next();
+});
 
 app.all('*', authenticatedOrNot, function(req, res, next) {
   next();
