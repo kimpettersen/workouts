@@ -7,18 +7,18 @@
 
     <div class="row entry-row">
       <select class="input-lg col-xs-4" ng-model="run.hours"
-        ng-init="run.hours = 0"
         ng-options="option for option in range(0, 25)">
+        <option value="">Hours</option>
       </select>
 
       <select class="input-lg col-xs-4" ng-model="run.minutes"
-      ng-init="run.minutes = 0"
       ng-options="option for option in range(0, 61)">
+        <option value="">Minutes</option>
       </select>
 
       <select class="input-lg col-xs-4" ng-model="run.seconds"
-      ng-init="run.seconds = 0"
       ng-options="option for option in range(0, 61)">
+        <option value="">Seconds</option>
       </select>
     </div>
 
