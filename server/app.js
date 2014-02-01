@@ -54,15 +54,6 @@ MongoClient.connect(mongoUri, function(err, db) {
     });
 });
 
-
-app.use(express.static('./app'));
-app.use(express.bodyParser());
-app.use(express.cookieParser() );
-app.use(express.session({ cookie: { maxAge: 60000 }, secret: 'liQfGTGaOTvNvQXqOJW' }));
-app.use(passport.initialize());
-app.use(passport.session());
-
-
 app.use(function(req, res, next) {
   var type = mime.lookup(req.url);
   console.log(typeof type);
@@ -74,6 +65,16 @@ app.use(function(req, res, next) {
   next();
 
 });
+
+app.use(express.logger());
+app.use(express.static(__dirname__ + '/app'));
+app.use(express.methodOverride());
+app.use(express.bodyParser());
+app.use(express.cookieParser() );
+app.use(express.session({ cookie: { maxAge: 60000 }, secret: 'liQfGTGaOTvNvQXqOJW' }));
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 function authenticatedOrNot(req, res, next){
     if(req.isAuthenticated()){
