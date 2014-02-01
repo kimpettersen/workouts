@@ -9,8 +9,9 @@ var express = require('express'),
     User,
     Run;
 
-var mongoUri = process.env.MONGOLAB_URI ? 'mongodb://heroku:thisbetterworkoutgreat@ds027479.mongolab.com:27479/workouts' : 'mongodb://127.0.0.1:27017/myruns';
+// var mongoUri = process.env.MONGOLAB_URI ? 'mongodb://heroku:thisbetterworkoutgreat@ds027479.mongolab.com:27479/workouts' : 'mongodb://127.0.0.1:27017/myruns';
 
+var mongoUri = 'mongodb://heroku:thisbetterworkoutgreat@ds027479.mongolab.com:27479/workouts';
 console.log('Connecting to: ', mongoUri);
 
 MongoClient.connect(mongoUri, function(err, db) {
