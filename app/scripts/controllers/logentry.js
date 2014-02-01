@@ -13,7 +13,7 @@ angular.module('myrunsApp')
 
       run.email = email;
 
-      $http.post('/run', run)
+      $http.post('http://lit-temple-4147.herokuapp.com/run', run)
         .success(function(){
           console.log(arguments);
         });

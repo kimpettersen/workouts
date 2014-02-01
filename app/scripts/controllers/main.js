@@ -7,7 +7,7 @@ angular.module('myrunsApp')
     $scope.populate = function() {
       var email = $cookies.email;
 
-      $http.get('/run', {
+      $http.get('http://lit-temple-4147.herokuapp.com/run', {
         params: {
           email: email
         }
@@ -18,7 +18,7 @@ angular.module('myrunsApp')
     };
 
     $scope.remove = function(id) {
-      $http.delete('/run/' + id)
+      $http.delete('http://lit-temple-4147.herokuapp.com/run/' + id)
         .success(function(){
           $scope.populate();
         })
