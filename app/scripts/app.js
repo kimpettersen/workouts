@@ -24,7 +24,7 @@ angular.module('myrunsApp', [
         controller: 'RegisterCtrl'
       })
       .when('/logentry', {
-        templateUrl: 'views/logEntry.html',
+        templateUrl: 'views/logentry.html',
         controller: 'LogentryCtrl',
         // resolve: {
         //   loggedin: checkLoggedin
