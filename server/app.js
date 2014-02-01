@@ -67,7 +67,7 @@ app.use(function(req, res, next) {
 });
 
 app.use(express.logger());
-app.use(express.static(__dirname__ + '/app'));
+app.use(express.static(__dirname + '/app'));
 app.use(express.methodOverride());
 app.use(express.bodyParser());
 app.use(express.cookieParser() );
