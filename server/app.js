@@ -9,10 +9,14 @@ var express = require('express'),
     User,
     Run;
 
-var mongoUri = process.env.MONGOLAB_URI || 'mongodb://127.0.0.1:27017/myruns';
+var mongoUri = process.env.MONGOLAB_URI ? 'mongodb://heroku:thisbetterworkoutgreat@ds027479.mongolab.com:27479/workouts' : 'mongodb://127.0.0.1:27017/myruns';
+
+console.log('Connecting to: ', mongoUri);
 
 MongoClient.connect(mongoUri, function(err, db) {
-
+    if (err) {
+      console.log(err);
+    }
     db = db;
     Run = db.collection('run');
     User = db.collection('user');
@@ -134,4 +138,6 @@ app.post('/run/?', function(req, res){
 
 });
 
-app.listen(3000);
+var port = Number(process.env.PORT || 3000);
+console.log('Listening to port: ', 3000);
+app.listen(port);
