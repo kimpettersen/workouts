@@ -5,6 +5,7 @@ var express = require('express'),
     passport = require('passport'),
     url = require('url'),
     mime = require('mime'),
+    MongoStore = require('connect-mongo')(express),
     LocalStrategy = require('passport-local').Strategy,
     db,
     User,
@@ -15,7 +16,7 @@ var express = require('express'),
 var mongoUri = 'mongodb://heroku:thisbetterworkoutgreat@ds027479.mongolab.com:27479/workouts';
 console.log('Connecting to: ', mongoUri);
 
-MongoClient.connect(mongoUri, function(err, db) {
+MongoClient.connect(mongoUri, {auto_reconnect: true}, function(err, db) {
     if (err) {
       console.log(err);
     }
@@ -66,7 +67,18 @@ MongoClient.connect(mongoUri, function(err, db) {
 app.use(express.static('./app'));
 app.use(express.bodyParser());
 app.use(express.cookieParser() );
-app.use(express.session({ cookie: { maxAge: 60000 }, secret: 'liQfGTGaOTvNvQXqOJW' }));
+app.use(express.session({
+      secret: 'wP18YkNIinpQp5QTbUe5b6YqqStf445Wjt4D',
+      store: new MongoStore({
+        host: 'ds027479.mongolab.com',
+        port: '27479',
+        username: 'heroku',
+        password: 'thisbetterworkoutgreat',
+        db: 'workouts'
+      }, function () {
+        console.log("db connection open");
+      }))
+    }));
 app.use(passport.initialize());
 app.use(passport.session());
 
