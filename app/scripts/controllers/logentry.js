@@ -6,11 +6,11 @@ angular.module('myrunsApp')
     $scope.today = moment().format('YYYY-MM-DD');
 
     $scope.submit = function(run) {
-      if (run.date === undefined) {
+      var email = localStorage.getItem('email');
+
+      if (typeof run.date === 'undefined') {
         run.date = moment().format('YYYY-MM-DD');
       }
-
-      var email = localStorage.getItem('email');
 
       if (typeof email === 'undefined') {
         alert('No email is set!')
@@ -18,10 +18,12 @@ angular.module('myrunsApp')
       }
 
       run.email = email;
+      run.hours = run.hours || '0'
+      run.minutes = run.minutes || '0'
+      run.seconds = run.seconds || '0'
 
-      $http.post('http://lit-temple-4147.herokuapp.com/run', run)
+      $http.post(config.host + '/run', run)
         .success(function(){
-          console.log(arguments);
         });
     };
 

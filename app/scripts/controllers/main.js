@@ -7,18 +7,17 @@ angular.module('myrunsApp')
     $scope.populate = function() {
       var email = localStorage.getItem('email');
 
-      $http.get('http://lit-temple-4147.herokuapp.com/run', {
+      $http.get(config.host + '/run', {
         params: {
           email: email
         }
       }).success(function(data){
-        console.log(data);
           $scope.runs = data;
         });
     };
 
     $scope.remove = function(id) {
-      $http.delete('http://lit-temple-4147.herokuapp.com/run/' + id)
+      $http.delete(config.host + '/run/' + id)
         .success(function(){
           $scope.populate();
         })

@@ -52,19 +52,19 @@ angular.module('myrunsApp', [
     });
 
     function checkLoggedin($q, $timeout, $http, $location, $rootScope) {
-      // var deferred = $q.defer();
+      var deferred = $q.defer();
 
-      // $http.get('/loggedin').success(function(user){
-      //   if (user !== '0'){
-      //     $timeout(deferred.resolve, 0);
-      //   } else {
-      //     $rootScope.message = 'You need to log in.';
-      //     $timeout(function(){
-      //       deferred.reject();
-      //     }, 0);
-      //   $location.url('/login');
-      // }
-    // });
+      $http.get('/loggedin').success(function(user){
+        if (user !== '0'){
+          $timeout(deferred.resolve, 0);
+        } else {
+          $rootScope.message = 'You need to log in.';
+          $timeout(function(){
+            deferred.reject();
+          }, 0);
+        $location.url('/login');
+      }
+    });
   }
 });
 

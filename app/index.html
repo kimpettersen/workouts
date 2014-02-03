@@ -18,13 +18,13 @@
   <body ng-app="myrunsApp">
 
     <div class="container">
-      <div class="header">
+      <div class="header" ng-controller="HeaderCtrl">
         <ul class="nav nav-pills pull-right">
           <!-- <li class="active"><a ng-href="#">Home</a></li> -->
-          <li><a ng-href="http://lit-temple-4147.herokuapp.com/#/logentry">New Run</a></li>
-          <li><a ng-href="http://lit-temple-4147.herokuapp.com/#/">My Runs</a></li>
-          <li><a ng-href="http://lit-temple-4147.herokuapp.com/logout">Log out</a></li>
-          <li><a ng-href="http://lit-temple-4147.herokuapp.com/#/login">Log in</a></li>
+          <li><a ng-click="navigate('/logentry')">New Run</a></li>
+          <li><a ng-click="navigate('/')">My Runs</a></li>
+          <li><a ng-click="navigate('/logout')">Log out</a></li>
+          <li><a ng-click="navigate('/login')">Log in</a></li>
         </ul>
         <h3 class="text-muted">myruns</h3>
       </div>
@@ -33,12 +33,12 @@
       </div>
     </div>
 
+    <script src="config.js"></script>
     <script src="bower_components/jquery/jquery.js"></script>
     <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
     <script type="text/javascript" src="bower_components/bootflat/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-resource/angular-resource.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
-    <script type="text/javascript" src="bower_components/angular-cookies/angular-cookies.min.js"></script>
 
     <script type="text/javascript" src="bower_components/lodash.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-lodash/angular-lodash.js"></script>
@@ -46,6 +46,7 @@
 
     <script type="text/javascript" src="scripts/app.js"></script>
     <script type="text/javascript" src="scripts/controllers/main.js"></script>
+    <script type="text/javascript" src="scripts/controllers/header.js"></script>
     <script type="text/javascript" src="scripts/controllers/logentry.js"></script>
     <script type="text/javascript" src="scripts/controllers/login.js"></script>
     <script type="text/javascript" src="scripts/controllers/register.js"></script>
