@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('myrunsApp')
-  .controller('MainCtrl', function ($scope, $http, $cookies) {
+  .controller('MainCtrl', function ($scope, $http) {
     $scope.runs = [];
 
     $scope.populate = function() {
-      var email = $cookies.email;
+      var email = localStorage.getItem('email');
 
       $http.get('http://lit-temple-4147.herokuapp.com/run', {
         params: {

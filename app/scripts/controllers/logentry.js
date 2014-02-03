@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myrunsApp')
-  .controller('LogentryCtrl', function ($scope, $http, $cookies) {
+  .controller('LogentryCtrl', function ($scope, $http) {
     $scope.units = ['km', 'miles'];
     $scope.today = moment().format('YYYY-MM-DD');
 
@@ -9,7 +9,13 @@ angular.module('myrunsApp')
       if (run.date === undefined) {
         run.date = moment().format('YYYY-MM-DD');
       }
-      var email = $cookies.email;
+
+      var email = localStorage.getItem('email');
+
+      if (typeof email === 'undefined') {
+        alert('No email is set!')
+        return;
+      }
 
       run.email = email;
 
