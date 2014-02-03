@@ -1,12 +1,41 @@
-<div ng-show=""> No workouts </div>
-<ul ng-repeat="workout in workouts">
+<table ng-table="tableParams" class="table horizontal-space">
+    <tr>
+      <th>Distance</th>
+      <th>Time</th>
+      <th>Type</th>
+      <th>Date</th>
+    </tr>
+    <tr ng-repeat="workout in workouts">
+        <td data-title="'Distance'" sortable="'distance'">
+            {{workout.distance}} {{ workout.unit }}
+        </td>
+        <td data-title="'Time'" sortable="'time'">
+            {{ workout.hours }}H {{ workout.minutes }}M {{ workout.seconds }}S {{ unit }}
+        </td>
+        <td data-title="'Type'" sortable="'type'">
+            {{workout.type}}
+        </td>
+        <td data-title="'Date'" sortable="'date'">
+            {{workout.date}}
+        </td>
+
+    </tr>
+</table>
+
+
+
+
+
+
+<!-- <ul ng-repeat="workout in workouts">
   <li>
     <span>{{ workout.date }}</span>
     <span>
-    {{ workout.hours }}H {{ workout.minutes }}M {{ workout.seconds }}S {{ unit }}
+
     </span>
     <span>
       <button type="submit" class="btn btn-default" ng-click="remove(workout._id)">delete</button>
     </span>
   </li>
 </ul>
+ -->

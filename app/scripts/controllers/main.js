@@ -17,7 +17,7 @@ angular.module('myrunsApp')
     };
 
     $scope.remove = function(id) {
-      $http.delete(config.host + '/workout/' + id)
+      $http.delete(config.host + '/run/' + id)
         .success(function(){
           $scope.populate();
         })
