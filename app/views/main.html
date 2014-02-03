@@ -1,12 +1,12 @@
 <div ng-show=""> No workouts </div>
-<ul ng-repeat="run in runs">
+<ul ng-repeat="workout in workouts">
   <li>
-    <span>{{ run.date }}</span>
+    <span>{{ workout.date }}</span>
     <span>
-    {{ run.hours }}H {{ run.minutes }}M {{ run.seconds }}S {{ unit }}
+    {{ workout.hours }}H {{ workout.minutes }}M {{ workout.seconds }}S {{ unit }}
     </span>
     <span>
-      <button type="submit" class="btn btn-default" ng-click="remove(run._id)">delete</button>
+      <button type="submit" class="btn btn-default" ng-click="remove(workout._id)">delete</button>
     </span>
   </li>
 </ul>

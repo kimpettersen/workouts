@@ -9,7 +9,7 @@ var express = require('express'),
     LocalStrategy = require('passport-local').Strategy,
     db,
     User,
-    Run;
+    Workout;
 
 // var mongoUri = 'mongodb://127.0.0.1:27017/workouts';
 
@@ -21,7 +21,7 @@ MongoClient.connect(mongoUri, {auto_reconnect: true}, function(err, db) {
       console.log(err);
     }
     db = db;
-    Run = db.collection('run');
+    Workout = db.collection('workout');
     User = db.collection('user');
 
 
@@ -132,23 +132,23 @@ app.all('*', authenticatedOrNot, function(req, res, next) {
 });
 
 
-app.get('/run/:id', function(req, res){
-  Run.findOne({'_id': new ObjectID(req.params.id) }, function(error, result){
+app.get('/workout/:id', function(req, res){
+  workout.findOne({'_id': new ObjectID(req.params.id) }, function(error, result){
     res.json(result);
   });
 });
 
-app.get('/run/?', function(req, res){
+app.get('/workout/?', function(req, res){
 
   var url_parts = url.parse(req.url, true);
   var query = url_parts.query;
-  Run.find(query).toArray(function(error, result){
+  Workout.find(query).toArray(function(error, result){
     res.json(result);
   });
 });
 
-app.delete('/run/:id', function(req, res){
-  Run.findAndModify(
+app.delete('/workout/:id', function(req, res){
+  Workout.findAndModify(
     {'_id': new ObjectID(req.params.id) },
     {},
     {},
@@ -161,8 +161,8 @@ app.delete('/run/:id', function(req, res){
 });
 
 
-app.post('/run/?', function(req, res){
-  Run.insert(req.body, function(error, result) {
+app.post('/workout/?', function(req, res){
+  Workout.insert(req.body, function(error, result) {
     if (error) throw error;
 
     res.status(200);

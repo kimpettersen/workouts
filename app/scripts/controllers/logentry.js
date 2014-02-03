@@ -3,13 +3,14 @@
 angular.module('myrunsApp')
   .controller('LogentryCtrl', function ($scope, $http) {
     $scope.units = ['km', 'miles'];
+    $scope.type = ['Run', 'Walk', 'Cycle', 'Swim'];
     $scope.today = moment().format('YYYY-MM-DD');
 
-    $scope.submit = function(run) {
+    $scope.submit = function(workout) {
       var email = localStorage.getItem('email');
 
-      if (typeof run.date === 'undefined') {
-        run.date = moment().format('YYYY-MM-DD');
+      if (typeof workout.date === 'undefined') {
+        workout.date = moment().format('YYYY-MM-DD');
       }
 
       if (typeof email === 'undefined') {
@@ -17,12 +18,12 @@ angular.module('myrunsApp')
         return;
       }
 
-      run.email = email;
-      run.hours = run.hours || '0'
-      run.minutes = run.minutes || '0'
-      run.seconds = run.seconds || '0'
+      workout.email = email;
+      workout.hours = workout.hours || '0'
+      workout.minutes = workout.minutes || '0'
+      workout.seconds = workout.seconds || '0'
 
-      $http.post(config.host + '/run', run)
+      $http.post(config.host + '/workout', workout)
         .success(function(){
         });
     };

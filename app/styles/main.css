@@ -1,6 +1,16 @@
-.logentry .entry-row{
+.horizontal-space {
   margin-bottom: 2rem;
 }
+
+.inline {
+  border-color: #ddd;
+}
+
+.btn-primary {
+  background-color:#e74c3c;
+  border-color: #e74c3c;
+}
+
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {

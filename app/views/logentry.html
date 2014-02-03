@@ -1,36 +1,46 @@
 <div class="logentry">
+  <h1 class="horizontal-space">Add a new workout</h1>
+
   <form role="form">
-    <div class="row entry-row">
-      <input type="date" class="input-lg col-xs-12" id="date" ng-model="run.date"
-      ng-init=" run.date = today ">
+    <div class="row entry-row horizontal-space">
+      <input type="date" class="input-lg col-xs-12 form-control" id="date" ng-model="workout.date"
+      ng-init=" workout.date = today ">
     </div>
 
-    <div class="row entry-row">
-      <select class="input-lg col-xs-4" ng-model="run.hours"
+    <div class="row entry-row horizontal-space">
+      <select class="inline input-lg col-xs-4" ng-model="workout.hours"
         ng-options="option for option in range(0, 25)">
         <option value="">Hours</option>
       </select>
 
-      <select class="input-lg col-xs-4" ng-model="run.minutes"
+      <select class="inline input-lg col-xs-4" ng-model="workout.minutes"
       ng-options="option for option in range(0, 61)">
         <option value="">Minutes</option>
       </select>
 
-      <select class="input-lg col-xs-4" ng-model="run.seconds"
+      <select class="inline input-lg col-xs-4" ng-model="workout.seconds"
       ng-options="option for option in range(0, 61)">
         <option value="">Seconds</option>
       </select>
     </div>
 
-    <div class="row entry-row">
-      <input class="input-lg col-xs-6" type="number" ng-model="run.length" ng-init="run.length = 0"/>
-        <select class="input-lg col-xs-6" ng-model="run.unit"
-        ng-init="run.unit = units[0]"
+    <div class="row entry-row horizontal-space form-group">
+      <input class="form-inline form-control input-lg col-xs-6" type="number" ng-model="workout.length" ng-init="workout.length = 0"/>
+        <select class="form-inline form-control input-lg col-xs-6" ng-model="workout.unit"
+        ng-init="workout.unit = units[0]"
         ng-options="option for option in units">
         </select>
     </div>
+
+    <div class="row entry-row horizontal-space form-group">
+      <select class="form-control input-lg col-xs-12" ng-model="workout.type"
+      ng-init="workout.type = type[0]"
+      ng-options="option for option in type">
+      </select>
+    </div>
+
     <div class="row entry-row">
-      <button type="submit" class="btn btn-default input-lg col-xs-12" ng-click="submit(run)">Submit</button>
+      <button type="submit" class="btn btn-primary btn-large btn-block" ng-click="submit(workout)">Submit</button>
     </div>
   </form>
   <br>
