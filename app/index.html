@@ -19,8 +19,8 @@
 
     <div class="container">
       <div class="header" ng-controller="HeaderCtrl">
+      User: {{ user }}
         <ul class="nav nav-pills pull-right">
-          <!-- <li class="active"><a ng-href="#">Home</a></li> -->
           <li><a ng-click="navigate('/logentry')">New Workout</a></li>
           <li><a ng-click="navigate('/')">My workouts</a></li>
           <li><a ng-click="navigate('/logout')">Log out</a></li>
